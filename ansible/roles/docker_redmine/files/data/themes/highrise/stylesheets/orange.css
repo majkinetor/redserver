@@ -1,0 +1,9 @@
+/***************************************************************************/
+/*  						ORANGE		
+/***************************************************************************/
+#header {
+	background-color: #FF7D30;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#FF7D30), to(#EC6600));
+	background-image: -moz-linear-gradient(center top, #FF7D30 0%, #EC6600 100% );
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FF7D30', endColorstr='#EC6600');
+}

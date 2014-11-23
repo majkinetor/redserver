@@ -1,0 +1,64 @@
+
+
+.controller-wiki {
+  div#content {
+    & > div.contextual {
+      margin-top: 3px;
+    }
+    & > div.wiki {
+      padding: 0 8px 8px 8px;
+    }
+  }
+}
+
+div.wiki {
+  line-height: 1.7;
+
+  p, blockquote, ul, ol, dl, table, pre {
+    margin: 15px 0;
+  }
+
+  ul, ol {
+    padding-left: 30px;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+  h2 {
+    font-size: 20px;
+  }
+  h3 {
+    font-size: 14px;
+  }
+  &.wiki-page {
+    & > h2 {
+      border-bottom: 1px solid #eee;
+    }
+  }
+
+  ul.toc {
+    padding: 10px;
+  }
+
+  img {
+    max-width: 100%;
+  }
+  table img {
+    width: 100%;
+  }
+
+  pre {
+    margin: 15px 0;
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    font-size: 13px;
+    line-height: 19px;
+    overflow: auto;
+    padding: 6px 10px;
+    @include border-radius(3px);
+  }
+}
+
+
+

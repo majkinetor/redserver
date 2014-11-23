@@ -1,0 +1,9 @@
+/***************************************************************************/
+/*  						 GREY		
+/***************************************************************************/
+#header {
+	background-color: #CCC;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#CCC), to(#999));
+	background-image: -moz-linear-gradient(center top, #CCC 0%, #999 100% );
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#CCC', endColorstr='#999');
+}

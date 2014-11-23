@@ -1,0 +1,9 @@
+/***************************************************************************/
+/*  						RED		
+/***************************************************************************/
+#header {
+	background-color: #900;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#900), to(#700));
+	background-image: -moz-linear-gradient(center top, #900 0%, #700 100% );
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#900', endColorstr='#700');
+}

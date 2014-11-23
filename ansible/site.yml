@@ -1,0 +1,13 @@
+---
+- hosts: redserver
+  gather_facts: no
+  user: root
+
+  vars:
+    latest_kernel: false
+
+  roles:
+    - { role: base,           tags: base }
+    - { role: docker,         tags: docker }
+    - { role: docker_mysql,   tags: mysql }
+    - { role: docker_redmine, tags: redmine }

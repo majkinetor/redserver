@@ -1,0 +1,2 @@
+---
+    - include: ../../service_tasks.yml ss={{service}}

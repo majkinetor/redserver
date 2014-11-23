@@ -1,0 +1,15 @@
+---
+service:
+    name:           mysql
+    state:          started
+    start_priority: 97
+    end_priority:   50
+    container:      sameersbn/mysql
+    version:        latest
+    options: >
+        "
+        -e DB_NAME=redmine_production
+        -e DB_USER=redmine
+        -e DB_PASS=redmine
+        -v /opt/mysql/data:/var/lib/mysql
+        "

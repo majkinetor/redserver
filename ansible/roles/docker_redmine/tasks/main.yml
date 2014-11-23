@@ -1,0 +1,35 @@
+---
+  - include: ../../service_tasks.yml ss={{service}}
+
+  # Jako sporo radi ... uzasno sporo u stvari
+  #- name: Copy redmine data
+    #copy: src={{ item }} dest=/opt/redmine/data
+          #mode=0644 owner=root group=root
+    #with_items: [ data/plugins, /data/themes ]
+    #tags: redmine-data
+
+  - name: Install required packages locally
+    local_action: apt name=unzip state=present
+    sudo: true
+    tags: redmine-data
+
+  - name: Check if redmine plugins exist
+    local_action: stat path="{{playbook_dir}}/roles/docker_redmine/files/data/plugins/init"
+    register: plugins_init
+    tags: redmine-data
+
+  - name: Get the latest redmine plugins
+    local_action: command /bin/bash -c 'cd "{{playbook_dir}}/roles/docker_redmine/files/data/plugins" && . redmine-plugins-install.sh'
+    when: not plugins_init.stat.exists
+    tags: redmine-data
+
+  - name: Copy redmine data
+    synchronize: src=data dest=/opt/redmine rsync_path=rsync
+    tags: redmine-data
+
+  - name: Set redmine data permissions
+    file: path=/opt/redmine owner=root group=root mode=0755 recurse=yes
+    tags: redmine-data
+
+  - name: Start the service
+    service: name={{service.name}} state=started

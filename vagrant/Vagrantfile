@@ -1,0 +1,67 @@
+def plugins( required_plugins )
+    plugin_no = 0
+    required_plugins.each do |plugin|
+        (system "vagrant plugin install #{plugin}"; plugin_no += 1) unless Vagrant.has_plugin? plugin
+    end
+    (puts "Installed #{plugin_no} new plugins. Please restart the last command."; exit ) if plugin_no > 0
+end
+
+plugins %w(vagrant-hostsupdater vagrant-proxyconf vagrant-vbguest)
+
+PUBLIC = false
+PROXY  = ENV['http_proxy'];
+puts "Using proxy #{PROXY}" if PROXY != nil
+
+
+VAGRANTFILE_API_VERSION = "2"
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+
+  config.vm.define "redserver" do |c|
+    c.vm.box = "hansode/centos-6.6-x86_64"
+    c.vm.hostname = "redserver"
+
+    c.vm.network "private_network", ip: "192.168.0.11" if !PUBLIC
+    c.vm.synced_folder '.', '/vagrant', disabled: true
+
+    c.vm.provider "virtualbox" do |v|
+        v.name = c.vm.hostname
+        v.memory = 2096
+        v.cpus = 2
+    end
+    c.vm.provision "shell", inline: <<-eos
+        sed 's/^PermitRootLogin no/PermitRootLogin yes/'                -i /etc/ssh/sshd_config
+        sed 's/^PasswordAuthentication no/PasswordAuthentication yes/'  -i /etc/ssh/sshd_config
+        sed 's/^DenyUsers root/#DenyUsers root/'                        -i /etc/ssh/sshd_config
+        service sshd restart
+    eos
+
+    c.vbguest.auto_update = false
+  end
+
+  config.vm.define "dominator" do |c|
+    c.vm.box = "svlasov/ubuntu-trusty64-ansible"
+    c.vm.hostname = "dominator"
+
+    c.vm.network "private_network",  ip: "192.168.0.10" if !PUBLIC
+    c.vm.synced_folder "../ansible", "/ansible", :mount_options => ["dmode=777", "fmode=666"]
+
+    c.vm.provider "virtualbox" do |v|
+        v.name = c.vm.hostname
+        v.memory = 2096
+        v.cpus = 2
+    end
+
+    c.vm.provision "shell", inline: "ansible-playbook -i /ansible/hosts_vagrant site.yml" if !PUBLIC
+  end
+
+  config.vm.network "public_network" if PUBLIC
+
+  if Vagrant.has_plugin?("vagrant-proxyconf")
+      config.proxy.http     = PROXY
+      config.proxy.https    = PROXY
+      config.proxy.ftp      = PROXY
+      config.proxy.no_proxy = "localhost,127.0.0.1"
+  end
+
+  #system %Q[vagrant ssh redserver -c "ip address show eth0 | grep 'inet ' | sed -e 's/^.*inet //' -e 's/\/.*$//'"`]
+end

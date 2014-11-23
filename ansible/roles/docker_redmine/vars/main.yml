@@ -1,0 +1,23 @@
+---
+service:
+    name:           redmine
+    state:          stopped
+    start_priority: 99
+    end_priority:   25
+    container:      sameersbn/redmine
+    version:        2.6.0-1
+    options: >
+        "
+        --link mysql:mysql
+        -p 80:80
+        -v /opt/redmine/data:/home/redmine/data
+        -e http_proxy=$http_proxy
+        -e https_proxy=$https_proxy
+        -e ftp_proxy=$ftp_proxy
+        -e no_proxy=$no_proxy
+        "
+    # Setup SMTP for notifications. Add this to above command
+    #-e SMTP_USER=
+    #-e SMTP_PASS=
+
+

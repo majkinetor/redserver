@@ -1,0 +1,12 @@
+---
+latest_kernel: true
+users:
+  - { name: 'vagrant', groups: 'wheel' }
+packages:
+  - curl
+  - git
+  - htop
+  - ntp
+  - tmux
+  - vim
+  - wget

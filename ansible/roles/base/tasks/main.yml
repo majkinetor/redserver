@@ -1,0 +1,33 @@
+---
+  - name: Install libselinux-python bindings required by ansible
+    yum: name=libselinux-python
+
+  - name: Disable SELinux
+    selinux: state=disabled
+
+  - name: Install ELRepo
+    yum: name=http://www.elrepo.org/elrepo-release-6-6.el6.elrepo.noarch.rpm
+    when: latest_kernel
+
+  - name: Install mainline kernel
+    yum: name=kernel-ml enablerepo=elrepo-kernel
+    notify: restart server
+    when: latest_kernel
+
+  - name: Change GRUB default
+    lineinfile: dest=/etc/grub.conf regexp=^default= line=default=0
+    when: latest_kernel
+
+  - name: Install EPEL
+    yum: name=http://mirror.pmf.kg.ac.rs/fedora/epel/6/i386/epel-release-6-8.noarch.rpm
+
+  - name: Install Base Packages
+    yum: name={{ item }}
+    with_items: packages
+
+  - name: Install tmux config
+    copy: src=tmux.conf dest=/etc/tmux.conf mode=0644 owner=root group=root
+
+  - name: Install users
+    user: name={{ item.name }} groups={{ item.groups }} append=yes state=present generate_ssh_key=yes ssh_key_bits=1048
+    with_items: users
