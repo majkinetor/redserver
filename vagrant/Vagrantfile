@@ -51,7 +51,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         v.cpus = 2
     end
 
-    c.vm.provision "shell", inline: "cd /ansible && ansible-playbook -i hosts_vagrant site.yml" if !PUBLIC
+    #c.vm.provision "shell", inline: "cd /ansible && ansible-playbook -i hosts_vagrant site.yml" if !PUBLIC
   end
 
   config.vm.network "public_network" if PUBLIC
