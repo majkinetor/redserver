@@ -81,7 +81,16 @@ Role used to install mysql container and init.d service. In its `vars\main.yml` 
 - **docker_redmine**  
 Role used to install redmine container and service. In its `vars\main.yml` customize SMTP settings and container name and version keeping in mind the same notes as in the case of mysql container. In `files` folder you can customize redmine plugins. 
 
-Keep in mind that provisioning take extended time to finish. Also, on first start redmine will take longer to start as it must install plugins.
+Keep in mind that provisioning take extended time to finish. Also, on first start redmine will take longer to start as it must install plugins. To make sure redserver is started check out logs:
+
+```sh
+vagrant ssh redserver -C "sudo docker logs -f redmine"
+```
+
+Normally, this log ends with:
+
+    2014-11-23 13:59:39,168 INFO success: unicorn entered RUNNING state, process has stay
+
 
 Redmine plugins
 ---------------
@@ -102,7 +111,12 @@ Notes
 
 - Redmine is started by `supervisor` which starts `unicorn` (config: `/home/redmine/redmine/config/unicorn.rb`). Nginx serves static content.
 - Dominator is used as ansible master instead of vagrant ansible provisioning directly on the redserver to be able to mimic production settings better and to avoid installing packages required by ansible master only.
-- Ansible will require password when using rsync to copy redmine-data. This seems to be ansible bug.
+- Ansible will require password when using rsync to copy redmine-data. This seems to be ansible bug. Since this happens at the very end of provisioning which can take a long time, ansible will fail if password is not entered soon enough. If ansible failed on this task just repeat the last role again by adding the redmine tag as an provision argument:
+
+```sh
+vagrant ssh dominator -c "cd /ansible && ansible-playbook -i hosts_vagrant site.yml -t redmine"
+
+```
 
 TODO
 ====
