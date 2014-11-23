@@ -35,7 +35,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         service sshd restart
     eos
 
-    c.vbguest.auto_update = false
+     c.vbguest.auto_update = false if Vagrant.has_plugin?("vagrant-vbguest")
   end
 
   config.vm.define "dominator" do |c|

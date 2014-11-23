@@ -43,7 +43,7 @@ ansible-playbook -i hosts_vagrant site.yml -k -e latest_kernel=True
 
 The following tags can be used to limit provisioning: `base`, `docker`, `mysql`, `redmine`, `redmine-data`. Use `hosts_prod` inventory file for production environment.
 
-Server is now ready. Access it via "http://redserver". Check it out by using administrative commands as `root` user:  
+Server is now ready. Access it via [http://redserver](http://redserver). Check it out by using administrative commands as `root` user:  
 
 ```sh
 d ps                        # List running containers 
@@ -64,6 +64,8 @@ Vagrant
 Set it to true to create `public_network` with IP issued by a DHCP or false to create host only network. The default is `false` - private network will be created with the hard coded IP addresses 192.168.0.10 && 11 for dominator and redserver. Vagrant plugin `vagrant-hostsupdater` adds this IP to hosts files so that you can access server using names defined in Vagrantfile (this works only for private network).
 - PROXY variables  
 Plugin `vagrant-proxyconf` propagates local proxy config which it gets from standard linux environment variables. In Windows, define those manually. 
+- Vagrant plugins  
+You can disable automated plugin download if you comment line `plugins` close to the start of the `Vagrantfile`. This will disable some features, most notably Windows provisioning for dominator can fail because Virtualbox feature "shared folders" requires synchronization between Virtualbox version and its Guest tools. This process is automated via [vagrant-vbguest](https://github.com/dotless-de/vagrant-vbguest). Plguin [vagrant-proxyconf](https://github.com/tmatilai/vagrant-proxyconf) is used to propagate proxy settings to all machines. 
 
 Ansible
 -------
@@ -101,3 +103,8 @@ Notes
 - Redmine is started by `supervisor` which starts `unicorn` (config: `/home/redmine/redmine/config/unicorn.rb`). Nginx serves static content.
 - Dominator is used as ansible master instead of vagrant ansible provisioning directly on the redserver to be able to mimic production settings better and to avoid installing packages required by ansible master only.
 - Ansible will require password when using rsync to copy redmine-data. This seems to be ansible bug.
+
+TODO
+====
+
+- Use custom vagrant boxes in order to reduce download size.
