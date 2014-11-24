@@ -1,6 +1,6 @@
 ---
 - hosts: redserver
-  gather_facts: no
+  gather_facts: yes
   user: root
 
   vars:
