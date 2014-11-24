@@ -9,10 +9,11 @@ Quick start
 Clone the repository:
    
     git clone https://github.com/majkinetor/redserver.git
+    cd redserver/vagrant
 
 Provision virtual machines:
 
-    cd redserver/vagrant && vagrant up
+    vagrant up
 
 Provision redserver:
 
@@ -132,6 +133,6 @@ Notes
 
 - Redmine is started by `supervisor` which starts `unicorn` (config: `/home/redmine/redmine/config/unicorn.rb`). Nginx serves static content.
 - Dominator is used as ansible master instead of vagrant ansible provisioning directly on the redserver to be able to mimic production settings better and to avoid installing packages required by ansible master only.
-- Ansible will require password when using rsync to copy redmine-data. This seems to be ansible bug. Since this happens at the very end of provisioning which can take a long time, ansible will fail if password is not entered soon enough. If ansible failed on this task just repeat the last role again by adding the redmine tag as an provision argument and use 'vagrant' as password.
+- Ansible will require password when using rsync to copy redmine-data. This seems to be ansible bug. Since this happens at the very end of provisioning which can take a long time, ansible will fail if password is not entered soon enough. If ansible failed on this task just repeat the last role again by adding the 'redmine' tag as an provision argument and use 'vagrant' as password.
 
     vagrant ssh dominator -c "cd /ansible && ansible-playbook -i hosts_vagrant site.yml -t redmine"
