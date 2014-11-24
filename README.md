@@ -1,10 +1,30 @@
 Introduction
 ============
 
-This is an automated system for the installation of the [Redmine](http://www.redmine.org) project management server in arbitrary environment. [Vagrant](https://www.vagrantup.com/) is used to setup development environment.  [Ansible](http://www.ansible.com) is used for provisioning of software components on empty operating system in all environments.
+This is an automated system for the installation of the [Redmine](http://www.redmine.org) project management server in arbitrary environment. [Vagrant](https://www.vagrantup.com/) is used to setup development environment.  [Sensible](http://www.ansible.com) is used for provisioning of software components on empty operating system in all environments.
 
-Installation
-============
+Quick start
+===========
+
+Clone the repository:
+   
+    git clone https://github.com/majkinetor/redserver.git
+
+Provision virtual machines:
+
+    cd redserver/vagrant && vagrant up
+
+Provision redserver:
+
+    vagrant ssh dominator -c "cd /ansible && ansible-playbook -i hosts_vagrant site.yml"
+
+Verify that redmine is running:
+
+    vagrant ssh redserver -c "sudo docker logs -f redmine"
+
+
+Installation Details
+====================
 
 Setup requires Internet connection for all involved machines as various components pull their packages (docker, bundler, yum ...). If you have proxy in the environment make sure that [proxy environment variables](http://www.gnu.org/software/wget/manual/html_node/Proxies.html) are set in the console. This is usually already set in Linux like systems, but on Windows you will need to do this manually. 
 
@@ -21,8 +41,8 @@ Prerequisites for production server
 - Centos 6.6 minimal 
 - `sshd` with `root` password access enabled for ansible provisioning.
 
-Run
----
+Provisioning
+------------
 
 - Open shell in vagrant directory and type `vagrant up`. This will create 2 machines - `dominator` and `redserver`. Dominator is used as an ansible master and its sole purpose is to provision ansible playbooks to redserver. Redserver is actual server that runs the Redmine web application in docker container which is linked to mysql container. Vagrantfile requires some plugins which will be automatically installed when you `up` it. After machines are provisioned both servers will contain bare minimum for ansible to work correctly.
 - Once machines are up and running (`vagrant status`) you can use dominator to provision ansible playbook to redserver. Connect to dominator, cd to `/ansible` directory and then provision redserver. Examples:
@@ -83,9 +103,7 @@ Role used to install redmine container and service. In its `vars\main.yml` custo
 
 Keep in mind that provisioning take extended time to finish. Also, on first start redmine will take longer to start as it must install plugins. To make sure redserver is started check out logs:
 
-```sh
-vagrant ssh redserver -C "sudo docker logs -f redmine"
-```
+    vagrant ssh redserver -C "sudo docker logs -f redmine"
 
 Normally, this log ends with:
 
@@ -113,12 +131,4 @@ Notes
 - Dominator is used as ansible master instead of vagrant ansible provisioning directly on the redserver to be able to mimic production settings better and to avoid installing packages required by ansible master only.
 - Ansible will require password when using rsync to copy redmine-data. This seems to be ansible bug. Since this happens at the very end of provisioning which can take a long time, ansible will fail if password is not entered soon enough. If ansible failed on this task just repeat the last role again by adding the redmine tag as an provision argument:
 
-```sh
-vagrant ssh dominator -c "cd /ansible && ansible-playbook -i hosts_vagrant site.yml -t redmine"
-
-```
-
-TODO
-====
-
-- Use custom vagrant boxes in order to reduce download size.
+    vagrant ssh dominator -c "cd /ansible && ansible-playbook -i hosts_vagrant site.yml -t redmine"
