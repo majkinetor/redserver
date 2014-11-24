@@ -16,6 +16,8 @@ puts "Using proxy #{PROXY}" if PROXY != nil
 VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
+  config.vm.box = "hansode/centos-6.6-x86_64"
+
   config.vm.define "redserver" do |c|
     c.vm.box = "hansode/centos-6.6-x86_64"
     c.vm.hostname = "redserver"
@@ -52,10 +54,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
 
     c.vm.provision "shell", inline: <<-eos
-        echo "Install EPEL Repo"
         rpm -Uvh https://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
-        echo "Install Ansible"
-        yum -y install ansible
+        yum -y install ansible sshpass
     eos
 
     #c.vm.provision "shell", inline: "cd /ansible && ansible-playbook -i hosts_vagrant site.yml" if !PUBLIC
