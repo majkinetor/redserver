@@ -16,8 +16,12 @@ service:
         -e ftp_proxy=$ftp_proxy
         -e no_proxy=$no_proxy
         "
-    # Setup SMTP for notifications. Add this to above command
-    #-e SMTP_USER=
-    #-e SMTP_PASS=
+#email:
+    #smtp_server:
+    #smtp_user:
+    #smtp_pass:
 
-
+db:
+    name: redmine_production
+    user: redmine
+    pass: redmine

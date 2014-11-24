@@ -1,5 +1,5 @@
 ---
-  - include: ../../service_tasks.yml ss={{service}}
+  - include: ../../service_tasks.yml ss={{service}} extra_opts='-e "DB_NAME={{db.name}}" -e "DB_USER={{db.user}}" -e "DB_PASS={{db.pass}}"'
 
   # Jako sporo radi ... uzasno sporo u stvari
   #- name: Copy redmine data
@@ -8,8 +8,11 @@
     #with_items: [ data/plugins, /data/themes ]
     #tags: redmine-data
 
+  - name: Create redmine database and user if not exist
+    command: create-db {{db.name}} {{db.user}} {{db.pass}}
+
   - name: Install required packages locally
-    local_action: apt name=unzip state=present
+    local_action: yum name=unzip state=present
     sudo: true
     tags: redmine-data
 

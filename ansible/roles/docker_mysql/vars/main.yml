@@ -8,8 +8,5 @@ service:
     version:        latest
     options: >
         "
-        -e DB_NAME=redmine_production
-        -e DB_USER=redmine
-        -e DB_PASS=redmine
         -v /opt/mysql/data:/var/lib/mysql
         "
