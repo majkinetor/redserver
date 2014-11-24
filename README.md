@@ -41,7 +41,7 @@ Prerequisites for production server
 
 - Centos 6.6 minimal.
 - `sshd` with `root` password access enabled for ansible provisioning.
-- Proxy variables **must be** defined in `/etc/environment`.
+- If you have proxy, environment variables should be already defined in `/etc/environment`.
 
 Provisioning
 ------------
@@ -98,7 +98,10 @@ Ansible
 There are 4 ansible roles that you can somewhat customize.
 
 - **base**  
-Role used to setup users and basic packages. Customize users and packages in file `default\main.yml`. Other then that, there is a `site.yml` setting `latest_kernel` set to false by default which can be used to install latest Centos6 mainline kernel from ELRepo because docker may work better with it. 
+Role used to setup users and basic packages. Customize users and packages, default values are in file `default\main.yml`. You can override them in `site.yml` file `vars` section. Of interest are:  
+`latest_kernel` - set to false by default which can be used to install latest Centos6 mainline kernel from ELRepo because docker may work better with it.  
+`packages` - array containing list of base packages to install on redserver  
+`users` - array of users to be created and list of groups to add those users to.
 - **docker**  
 Role used to install and setup docker and its shell aliases.
 - **docker_mysql**  
