@@ -7,11 +7,11 @@
         - docker-io
 
   - name: Set docker proxy settings
-    lineinfile: dest=/etc/sysconfig/docker line={{item}} state=present
+    lineinfile: dest=/etc/sysconfig/docker line="{{item}}" state=present
     when: ansible_env.http_proxy is defined
     with_items:
-        - 'export HTTP_PROXY={{ansible_env.http_proxy}}'
-        - 'export HTTPS_PROXY={{ansible_env.https_proxy}}'
+        - "export HTTP_PROXY={{ansible_env.http_proxy}}"
+        - "export HTTPS_PROXY={{ansible_env.https_proxy}}"
 
   - name: Start docker on boot
     service: name=docker enabled=yes
