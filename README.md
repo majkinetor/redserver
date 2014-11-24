@@ -66,6 +66,9 @@ The following tags can be used to limit provisioning: `base`, `docker`, `mysql`,
 Server is now ready. Access it via [http://redserver](http://redserver). Check it out by using administrative commands as `root` user:  
 
 ```sh
+vagrant ssh redserver       # Connect to redserver
+sudo su                     # Become root
+
 d ps                        # List running containers 
 d logs -f redmine           # Redmine supervisor logs
 e redmine                   # Enter container 
