@@ -8,7 +8,7 @@
     #with_items: [ data/plugins, /data/themes ]
     #tags: redmine-data
 
-  - name: Create redmine database and user if not exist
+  - name: Create redmine database and user if needed
     command: create-db {{db.name}} {{db.user}} {{db.pass}}
 
   - name: Install required packages locally
@@ -33,6 +33,9 @@
   - name: Set redmine data permissions
     file: path=/opt/redmine owner=root group=root mode=0755 recurse=yes
     tags: redmine-data
+
+  - name: Create redmine scripts
+    template: src=redmine-plugin-rm.j2 dest=/bin/redmine-plugin-rm mode=0755 owner=root
 
   - name: Start the service
     service: name={{service.name}} state=started

@@ -4,9 +4,9 @@ users:
   - { name: 'vagrant', groups: 'wheel' }
 packages:
   - curl
+  - wget
   - git
-  - htop
   - ntp
   - tmux
-  - vim
-  - wget
+  #- htop
+  #- vim

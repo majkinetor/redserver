@@ -1,0 +1,5 @@
+PLUGIN_NAME=$1
+
+docker run --name={{service.name}} -it --rm -v /opt/redmine/data:/home/redmine/data \
+  {{service.container}}:{{service.version}} \
+  app:rake redmine:plugins:migrate NAME=$PLUGIN_NAME VERSION=0
