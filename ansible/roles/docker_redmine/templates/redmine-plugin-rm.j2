@@ -1,5 +1,13 @@
 PLUGIN_NAME=$1
 
-docker run --name={{service.name}} -it --rm -v /opt/redmine/data:/home/redmine/data \
+set -e
+
+service {{service.name}} stop
+docker run --name={{service.name}}-plugin-re --link mysql:mysql -it --rm -v /opt/redmine/data:/home/redmine/data \
+  -e "DB_NAME={{db.name}}" -e "DB_USER={{db.user}}" -e "DB_PASS={{db.pass}}" \
   {{service.container}}:{{service.version}} \
   app:rake redmine:plugins:migrate NAME=$PLUGIN_NAME VERSION=0
+
+rm -rf /opt/redmine/data/plugins/$PLUGIN_NAME
+service {{service.name}} start
+
