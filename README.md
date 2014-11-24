@@ -65,7 +65,7 @@ Set it to true to create `public_network` with IP issued by a DHCP or false to c
 - PROXY variables  
 Plugin `vagrant-proxyconf` propagates local proxy config which it gets from standard linux environment variables. In Windows, define those manually. 
 - Vagrant plugins  
-You can disable automated plugin download if you comment line `plugins` close to the start of the `Vagrantfile`. This will disable some features, most notably Windows provisioning for dominator can fail because Virtualbox feature "shared folders" requires synchronization between Virtualbox version and its Guest tools. This process is automated via [vagrant-vbguest](https://github.com/dotless-de/vagrant-vbguest). Plugin [vagrant-proxyconf](https://github.com/tmatilai/vagrant-proxyconf) is used to propagate proxy settings to all machines. 
+You can disable automated plugin download if you comment out line `plugins` close to the start of the `Vagrantfile`. This will disable some features, most notably Windows provisioning for dominator can fail because Virtualbox feature "shared folders" requires synchronization between Virtualbox version and its Guest tools. This process is automated via [vagrant-vbguest](https://github.com/dotless-de/vagrant-vbguest). Plugin [vagrant-proxyconf](https://github.com/tmatilai/vagrant-proxyconf) is used to propagate proxy settings to all machines. 
 
 Ansible
 -------
