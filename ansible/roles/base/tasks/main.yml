@@ -5,17 +5,8 @@
   - name: Disable SELinux
     selinux: state=disabled
 
-  - name: Install ELRepo
-    yum: name=http://www.elrepo.org/elrepo-release-6-6.el6.elrepo.noarch.rpm
-    when: latest_kernel
-
-  - name: Install mainline kernel
-    yum: name=kernel-ml enablerepo=elrepo-kernel
-    notify: restart server
-    when: latest_kernel
-
-  - name: Change GRUB default
-    lineinfile: dest=/etc/grub.conf regexp=^default= line=default=0
+  - name: Install latest kernel
+    include: kernel.yml
     when: latest_kernel
 
   - name: Install EPEL
