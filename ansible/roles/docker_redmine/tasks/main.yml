@@ -31,7 +31,7 @@
     tags: redmine-data
 
   - name: Copy redmine data
-    local_action: command sshpass -p {{ansible_ssh_pass}} rsync "{{playbook_dir}}/roles/docker_redmine/files/data/" "root@{{ansible_ssh_host}}:/opt/redmine"
+    local_action: command sshpass -p {{ansible_ssh_pass}} rsync -r "{{playbook_dir}}/roles/docker_redmine/files/data/" "root@{{ansible_ssh_host}}:/opt/redmine"
     tags: redmine-data
 
   - name: Set redmine data permissions
