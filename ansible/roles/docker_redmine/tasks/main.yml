@@ -1,7 +1,7 @@
 ---
   - include: ../../service_tasks.yml ss={{service}} extra_opts='-e "DB_NAME={{db.name}}" -e "DB_USER={{db.user}}" -e "DB_PASS={{db.pass}}"'
 
-  # Jako sporo radi ... uzasno sporo u stvari
+  # Unbearably sloooooooow
   #- name: Copy redmine data
     #copy: src={{ item }} dest=/opt/redmine/data
           #mode=0644 owner=root group=root
@@ -31,7 +31,7 @@
     tags: redmine-data
 
   - name: Copy redmine data
-    local_action: command sshpass -p {{ansible_ssh_pass}} rsync -r "{{playbook_dir}}/roles/docker_redmine/files/data/" "root@{{ansible_ssh_host}}:/opt/redmine"
+    local_action: command sshpass -p {{ansible_ssh_pass}} rsync -r "{{playbook_dir}}/roles/docker_redmine/files/data/" "root@{{ansible_ssh_host}}:/opt/redmine/data"
     tags: redmine-data
 
   - name: Set redmine data permissions
