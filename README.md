@@ -95,6 +95,7 @@ In `Vagrantfile`, set it to true to create `public_network` with IP issued by a 
 Plugin [vagrant-proxyconf](https://github.com/tmatilai/vagrant-proxyconf) is used to propagate local proxy config which it gets from standard linux environment variables to all virtual machines. In Windows, define those manually.
 - **Vagrant plugins**  
 You can disable automated plugin download if you comment out line `plugins` close to the start of the `Vagrantfile`. This will disable some features, most notably Windows provisioning for dominator may fail because Virtualbox feature "shared folders" requires synchronization between Virtualbox version and its Guest tools. This process is otherwise automated using [vagrant-vbguest](https://github.com/dotless-de/vagrant-vbguest)
+
 Ansible
 -------
 
@@ -145,3 +146,4 @@ Notes
 
 - Redmine is started by `supervisor` which starts `unicorn` (config: `/home/redmine/redmine/config/unicorn.rb`). Nginx serves static content.
 - Dominator is used as ansible master instead of vagrant ansible provisioning directly on the redserver to be able to mimic production settings better and to avoid installing packages required by ansible master only.
+
