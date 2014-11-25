@@ -1,0 +1,29 @@
+en:
+  permission_view_hidden_content: Vidi skriveni sadržaj
+
+  glyph_left_quote: “
+  glyph_right_quote: ”
+
+  label_custom_wiki_macro_plural: Lokalni wiki makroi
+  label_custom_wiki_macro_new: Novi makro
+
+
+  notice_custom_macro_edit: Obratite pažnju prilikom ažuiranja makroa, možda se već koristi.
+
+  text_custom_wiki_macro_name_info: Samo mala slova (a-z), brojevi i podvlake su dozvoljeni.
+  text_custom_wiki_macro_desc_info: 'Wiki sintaksa je podržana. Primer:'
+  text_custom_wiki_macro_desc_sample: Prikazuje listu svih raspoloživih makroa, uključujući i deskripciju ako postoji.
+  text_custom_wiki_macro_content_info: 'HTML je podržan. Sintaksa za argumente:'
+  text_custom_wiki_macro_named_argument: '%{name} - imenovani argument postavljen koristeći ime=vrednost.'
+  text_custom_wiki_macro_unnamed_argument: '%[1] - neimenovani argument postavljen samo kao vrednost.'
+  text_custom_wiki_macro_body: '%(*) - telo makro-a.'
+
+  label_mentions: Pominjanja
+  label_user_mentions: Pominjanja za %{value}
+  label_view_all_mentions: Vidi sva pominjanja
+  label_total_number_of_mentions: Ukupni broj pominjanja
+  label_user_mentioned: Korisnik
+
+  mail_subject_you_mentioned: Bili ste pomenuti
+  mail_body_you_mentioned: Bili ste pomenuti u %{title}.
+  mail_body_check_mention: Da bi ste proverili pominjanja, idite na

@@ -1,0 +1,245 @@
+sr-YU:
+  contacts_title: Kontakti
+
+  label_all_people: Sve osobe
+  label_all_companies: Sve kompanije
+  label_all_people_and_companies: Svi kontakti
+  label_recently_viewed: Nedavno pregledani
+  label_gravatar_enabled: Koristi gravatar
+  label_contacts_thumbnails_enabled: Prikaži sličice u notama
+  label_max_contacts_thumbnail_file_size: Maksimalna veličina sličice
+  label_contacts_view_all: Pregled svih kontakata
+  label_contact_files: Fajlovi
+  label_task_plural: Zadaci
+  label_contact_background_info: Dodatne informacije
+  label_person: Osoba
+  label_company: Kompanija
+  label_contact_plural: Kontakti
+  label_contact_information: Informacije o kontaktu
+  label_contact_edit_information: Izmena kontakta
+  label_edit_tags: Izmeni tagove
+  label_contact_view: Pregled
+  label_contact_list: Lista
+  label_contact_new: Novi kontakt
+  label_at_company: u 
+  label_last_notes: Poslednje beleške
+  label_tags_plural: Tagovi
+  label_multi_tags_plural: Izaberi više tagova
+  label_single_tag_mode: Jedan tag
+  label_multiple_tags_mode: Više tagova
+  label_contact_tag: Tag
+  label_time_ago: pre
+  label_add_note_plural: Dodaj belešku
+  label_note_plural: Beleške
+  label_company_employees: Zaposleni
+  label_add_tags_rule: razdvojeno zarezima
+  label_contact_search: Pretraga po imenu
+  label_note_for: Beleška za
+  label_show_on_map: Prikaži na mapi
+  label_add_another_phone: dodaj telefon   
+  label_remove: obriši
+  label_related_contacts: Srodni kontakti
+  label_assigned_to: Dodeljeno
+  label_issue_added: Problem je dodat
+  label_add_emails_rule: razdvojeno zarezima
+  label_add_phones_rule: razdvojeno zarezima  
+  label_add_employee: Novi zaposleni  
+  label_merge_duplicate_plural: Objedini
+  label_duplicate_plural: Mogući duplikati
+  label_duplicate_for_plural: Mogući duplikati za
+  label_add_tag: + dodaj tag
+   
+  label_note_show_extras: Napredni unos (tip, datum, fajlovi)
+  label_note_hide_extras: Sakrij napredni unos    
+  label_note_added: Beleška je uspešno dodata
+  label_note_read_more: (čitaj dalje)
+
+  label_deal_plural: Ponude
+  label_contractor_plural: Kontakti
+  label_deal: Ponuda     
+  label_deal_new: Nova ponuda
+  label_deal_edit_information: Ažuriraj informacije o ponudi
+  label_deal_change_status: Promeni status
+  label_statistics: Statistike
+  
+  label_deal_status_new: Nova
+  label_deal_status_first_contact: Prvi kontakt
+  label_deal_status_negotiations: Pregovori
+  label_deal_status_pending: Neodlučen 
+  label_deal_status_won: Dobijen
+  label_deal_status_lost: Izgubljen  
+  
+  label_created_on: Kreirano
+
+  field_note_date: Datum note
+  
+  field_deal_name: Ime
+  field_deal_background: Pozadina
+  field_deal_contact: Kontakt    
+  field_deal_price: Suma  
+  field_price: Suma
+  
+  field_contact_avatar: Avatar
+  field_contact_is_company: Kompanija
+  field_contact_name: Nadimak
+  field_contact_last_name: Prezime
+  field_contact_first_name: Ime
+  field_contact_middle_name: Srednje ime
+  field_contact_job_title: Funkcija
+  field_contact_company: Kompanija
+  field_contact_address: Adresa
+  field_contact_phone: Telefon
+  field_contact_email: Email
+  field_contact_website: Websajt
+  field_contact_skype: Skype
+  field_contact_status: Status   
+  field_contact_background: Dodatne informacije   
+  field_contact_tag_names: Tagovi   
+  field_first_name: Ime
+  field_last_name: Prezime
+  field_company: Kompanija
+  field_birthday: Rođendan      
+  field_contact_department: Odeljenje 
+  
+  
+  field_company_field: Industrija 
+  
+  field_color: Boja
+  
+  button_add_note: Dodaj belešku
+  notice_successful_save: Uspešno sačuvano
+  notice_successful_add: Uspešno kreirano
+  notice_unsuccessful_save: Neuspešno sačuvano !
+  notice_successful_merged: Uspešno objedinjeno    
+  
+  notice_merged_warning: Sve beleške, projekti, tagovi i taskovi dodeljeni ovoj osobi biće prebačeni u izabranog iznad. Kontakt će zatim biti obrisan
+
+  
+  project_module_contacts_module: Kontakti
+  
+  permission_view_contacts: Vidi kontakt
+  permission_edit_contacts: Izmeni kontakt
+  permission_delete_contacts: Obriši kontakt
+  permission_view_deals: Vidi ugovore
+  permission_edit_deals: Izmeni ugovore
+  permission_delete_deals: Obriši ugovore   
+  permission_add_notes: Kreiraj belešku
+  permission_delete_notes: Obriši belešku      
+  permission_delete_own_notes: Obriši moje boleške     
+  
+  # 2.0.0   
+  label_deal_category: Kategorija ponude
+  label_deal_category_plural: Kategorije ponuda
+  label_deal_category_new: Nova kategorija
+  text_deal_category_destroy_assignments: Ukoloni dodele za kategorije
+  text_deal_category_destroy_question: "Neke ponude (%{count}) su dodeljene ovoj kategoriji. Šta želite da uradite?"
+  text_deal_category_reassign_to: Dodeli ponudu sledećoj kategoriji
+  text_deals_destroy_confirmation: 'Da li ste sigurni da želite da obrišete odabrane ponude?'
+  label_deal_status_plural: Statusi ponuda
+  label_deal_status: Status ponude
+  field_deal_status_is_closed: Zatvoreno
+  label_deal_status_new: Novo
+  permission_manage_contacts: Liste
+  label_sale_funel: Sales funnel
+  label_period: Period
+  label_count: Broj 
+  
+  #2.0.1
+  label_user_format: Format imena kontakta
+  label_my_contact_plural: Kontakti dodeljeni meni
+  label_my_deal_plural: Otvori ponude dodeljene meni
+  label_contact_view_all: Vidi sve kontakte
+  label_deal_view_all: Vidi sve ponude
+  
+  #2.0.2
+  label_bulk_edit_selected_contacts: Ažuriraj sve odabrane kontakte
+  label_bulk_edit_selected_deals: Ažuriraj sve odabrane ponude
+  label_bulk_send_mail_selected_contacts: Pošalji mail odabranim kontaktima
+  field_add_tags: Dodaj tagove
+  field_delete_tags: Obriši tagove
+  label_send_mail: Pošalj mail
+  error_empty_email: Email ne može biti prazan
+  permission_send_contacts_mail: Pošalji mail
+  field_mail_from: Adresa od
+  text_email_macros: Dostupni makroi %{macro}
+  field_message: Poruka
+
+  #2.0.3
+  label_add_contact: Dodaj novi kontakt u projekat
+  label_contact: Kontakti
+  field_age: Starost
+  label_vcf_import: Importuj iz vCard
+  label_mail_from: Od
+  permission_import_contacts: Importuj kontakte
+  
+  #2.1.0
+  field_company_name: Company name
+  label_recently_added_contacts: Recently added contacts
+  label_created_by_me: Contacts created by me
+  my_contacts: My contacts
+  my_deals: My deals
+
+  #2.2.0
+  label_note_type_email: Email
+  label_note_type_call: Poziv
+  label_note_type_meeting: Sastanak
+  field_deal_currency: Valuta
+  label_my_contacts_stats: Statistike kontakata za ovaj mesec
+  label_contacts_created: Kreirani kontakti
+  label_deals_created: Kreirane ponude
+  my_contacts_avatars: Fotografije mojih kontakta
+  my_contacts_stats: Statistike kontakta
+  label_add_into: Dodaj uvod
+  label_delete_from: Obriši od
+  label_show_deaks_tab: Prikaži tab Ponuda
+  label_show_on_projects_show: Prikaži kontakte na matičnoj strani projekta
+  
+  #2.2.1
+  label_contacts_show_in_list: Prikaži u listi
+  
+  #2.3.0
+  label_module_plural: Moduli
+  label_contacts_default_currency: Podrazumevana valuta za ponudu
+  label_contacts_list_partial_style: Stil liste kontakata
+  label_contacts_list_excerpt: Izvod
+  label_contacts_list_cards: Kartice
+  label_contacts_list_list: Taabelarno
+  field_contacts: Kontakt
+  field_companies: Kompanija
+  label_contacts_added_time_by: Dodao
+  label_contact_note_authoring_time: Prikaži vreme beleške
+  label_contact_issues_filters: Filteri problema
+  label_contacts_csv_import: Uvezi kontakte iz CSV fajla
+  label_contacts_upload_encoding: Kodiranje fajla
+  label_contacts_csv_file: CSV fajl
+  label_contacts_csv_separator: Separator
+  field_middle_name: Srednje ime
+  field_job_title: Funkcija
+  field_company: Kompanija
+  field_address: Adresa
+  field_phone: Telefon
+  field_email: Email
+  field_tags: Tagovi
+  field_last_note: Poslednja nota
+  field_is_company: Kompanija?
+  field_contact_full_name: Puno ime
+  button_contacts_edit_query: Ažuriraj upit
+  button_contacts_delete_query: Obriši upit
+  permission_manage_public_contacts_queries: Upravljaj javnim upitima
+  permission_add_deals: Dodaj ponude
+  permission_add_contacts: Dodaj kontakte
+  permission_save_contacts_queries: Snimi upite
+
+  #2.3.3
+  label_contact_show_in_app_menu: Prikaži tabove u meniju 
+
+  #2.3.4
+  label_contact_show_closed_issues: Prikaži zatvorene probleme
+
+  #3.0.0
+  label_contacts_import: Importuj
+  label_contact_note_plural: Note kontakta
+  label_deal_note_plural: Note ponuda
+  label_contact_all_note_plural: Sve note
+  error_unable_delete_deal_status: Ne mogu da obrišem status ponude
+  label_contacts_hidden: Skrivena podešavanja

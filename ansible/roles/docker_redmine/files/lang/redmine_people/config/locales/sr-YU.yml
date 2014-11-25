@@ -1,0 +1,47 @@
+# English strings go here for Rails i18n
+sr-YU:
+  label_people: Osobe
+  label_people_edit_person: Izmeni informacije o osobi
+  label_people_new_person: Nova osoba
+  label_people_group_plular: Grupe
+  label_people_search: Pretraga po imenu
+  label_people_show_on_map: Pokaži na mapi
+  label_people_person: Osoba
+  label_people_all: Pokaži sve osobe
+  label_people_next_birthdays: Sledeći rođendan
+  label_people_new_people: Nova osoba
+  label_people_male: Muško
+  label_people_female: Žensko
+  label_people_settings: Podešavanja za osobu
+
+  button_people_edit_profile: Izmeni profil
+
+  field_people_avatar: Avatar
+  field_people_job_title: Funkcija
+  field_people_phone: Telefon
+  field_people_phone_plural: Telefoni
+  field_people_skype: Skype
+  field_people_twitter: Twitter
+  field_people_facebook: Facebook 
+  field_people_linkedin: LinkedIn
+  field_people_middlename: Srednje ime
+  field_people_background: Ostale informacije
+  field_people_address: Adresa
+  field_people_gender: Pol
+  field_people_birthday: Rođendan
+  field_people_appearance_date: Datum pojavljivanja
+  field_people_age: Starost
+
+  people_permission_edit_people: Izmeni osobe
+  people_permission_view_people: Pregled osoba
+  people_permission_add_people: Dodaj osobu
+  people_permission_delete_people: Obriši osobu
+  people_permission_add_attachments: Upload fajlova
+
+  #0.0.2
+  label_people_acl_settings: ACL podešavanja
+  label_people_visibility: Vidljivost modula
+  label_people_visibility_select: Prikaži za
+  label_people_visibility_resistered: Registrovane korisnike
+  label_people_visibility_selected: Odabrane korisnike
+  label_people_visibility_anonymous: Anonimne korisnike

@@ -1,0 +1,29 @@
+# Serbian strings go here
+sr-YU:
+  label_icalendar_header: ICalendar
+  label_issues_mine: Moji problemi
+  label_issues_assigned: Dodeljeni problemi
+  label_issues_all: Svi problemi
+  label_issues_open_only: samo otvoreni
+  toolip_icalendar_link: Kopiraj link da bi koristio svoju omiljenu icalCopy the link location for use in your favorite ical-aplikaciju.
+  label_settings_rendering_header: Opcije prikaza
+  label_settings_rendering_issues: Prikaz
+  label_settings_rendering_versions: Prikaži verziju kao
+  option_settings_rendering_none: izostavi prikaz
+  option_settings_rendering_vevent_full_span: celodnevni događaj
+  option_settings_rendering_vevent_end_date: celodnevni događaj samo za krajnji datum
+  option_settings_rendering_vevent_start_and_end_date: celodnevni događaj samo za početni datum
+  option_settings_rendering_vtodo: todo događaj
+  text_settings_rendering_more_information: Za više informacija vidi
+  label_redmics_settings_userprefs: ICS eksport
+  notice_redmics_userprefs_updated: ICS eksport podešavanja su uspešno sačuvana
+  notice_redmics_userprefs_reset: ICS eksport podešavanja su uspešno resetovana
+  label_settings_enhance_summary: Poboljšaj rezime
+  option_settings_enhance_summary_plain: zadrži trenutni prikaz
+  option_settings_enhance_summary_status: status
+  option_settings_enhance_summary_ticket_number_and_status: broj i status problema
+  label_settings_enhance_description: Poboljšaj opis
+  option_settings_enhance_description_plain: zadrži trenutni prikaz
+  option_settings_enhance_description_url_and_version: URL i verzija
+  option_settings_enhance_description_full_no_url: sve dostupne informacije bez URL-a
+  option_settings_enhance_description_full: sve dostupne informacije
