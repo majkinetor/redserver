@@ -34,15 +34,15 @@ Password is used for authentication. You can specify it in the ansible inventory
 Prerequisites for testing
 --------------------------
 
-- Any x64 operating system
-- VirtualBox 3.18+
-- Vagrant 1.6+
+- Any x64 operating system.
+- VirtualBox 3.18+.
+- Vagrant 1.6+.
 - If you have proxy, environment variables should be already defined. 
 
 Prerequisites for production server
 -----------------------------------
 
-- Centos 6.6 minimal.
+- CentOS 6.6.
 - `sshd` with `root` password access enabled for ansible provisioning.
 - If you have proxy, environment variables should be already defined in `/etc/environment`.
 
@@ -50,7 +50,7 @@ Prerequisites for production server
 Provisioning
 ------------
 
-- Open shell in vagrant directory and type `vagrant up`. This will create 2 machines - `dominator` and `redserver`. Dominator is used as an ansible master and its sole purpose is to provision ansible playbooks to redserver. Redserver is actual server that runs the Redmine web application in docker container which is linked to mysql container. Vagrantfile requires some plugins which will be automatically installed when you `up` it. After machines are provisioned both servers will contain bare minimum for ansible to work correctly.
+- Open shell in vagrant directory and type `vagrant up`. This will create 2 machines - *dominator* and *redserver*. Dominator is used as an ansible master and its sole purpose is to provision ansible playbooks to redserver. Redserver is actual server that runs the Redmine web application in docker container which is linked to mysql container. Vagrantfile requires some plugins which will be automatically installed when you `up` it. After machines are provisioned both servers will contain bare minimum for ansible to work correctly.
 - Once machines are up and running (`vagrant status`) you can use dominator to provision ansible playbook to redserver. Connect to dominator, cd to `/ansible` directory and then provision redserver. Examples:
 
 ```sh
@@ -61,15 +61,15 @@ vagrant ssh dominator -c "cd /ansible && ansible-playbook -i hosts_vagrant site.
 ansible-playbook -i hosts_vagrant site.yml -t mysql,redmine
 
 # Ask for root password so you don't have to specify it in hosts_prod
-ansible-playbook -i hosts_vagrant site.yml -k
+ansible-playbook -i hosts_prod site.yml -k
 
 # Install latest kernel for docker
 ansible-playbook -i hosts_vagrant site.yml -k -e latest_kernel=True
 ```
 
-The following tags can be used to limit provisioning: `base`, `docker`, `mysql`, `redmine`, `redmine-data`. Use `hosts_prod` inventory file for production environment.
+The following tags can be used to limit provisioning: `base`, `docker`, `mysql`, `redmine`, `redmine-data`.
 
-Server is now ready. Access it via [http://redserver](http://redserver). Check it out by using administrative commands as `root` user:  
+Server is now ready. Access it via [http://redserver](http://redserver) or its IP address. Check it out by using administrative commands as `root` user:  
 
 ```sh
 vagrant ssh redserver       # Connect to redserver
@@ -90,12 +90,11 @@ Vagrant
 -------
 
 - **Constant PUBLIC**  
-In `Vagrantfile`, set it to true to create `public_network` with IP issued by a DHCP or false to create host only network. The default is `false` - private network will be created with the hard coded IP addresses 193.168.0.10 && 11 for dominator and redserver. Vagrant plugin [vagrant-hostsupdater](https://github.com/cogitatio/vagrant-hostsupdater) adds this IP to hosts files so that you can access server using names defined in Vagrantfile (this works only for private network).
+In `Vagrantfile`, set it to true to create `public_network` with IP issued by a DHCP or false to create host only network. The default is `false` - private network will be created with the hard coded IP addresses 193.168.0.10 & 11 for dominator and redserver. Vagrant plugin [vagrant-hostsupdater](https://github.com/cogitatio/vagrant-hostsupdater) adds this IP to hosts files so that you can access server using names defined in Vagrantfile (this works only for private network).
 - **PROXY variables**  
-Plugin `vagrant-proxyconf` propagates local proxy config which it gets from standard linux environment variables. In Windows, define those manually. 
+Plugin [vagrant-proxyconf](https://github.com/tmatilai/vagrant-proxyconf) is used to propagate local proxy config which it gets from standard linux environment variables to all virtual machines. In Windows, define those manually.
 - **Vagrant plugins**  
-You can disable automated plugin download if you comment out line `plugins` close to the start of the `Vagrantfile`. This will disable some features, most notably Windows provisioning for dominator may fail because Virtualbox feature "shared folders" requires synchronization between Virtualbox version and its Guest tools. This process is otherwise automated using [vagrant-vbguest](https://github.com/dotless-de/vagrant-vbguest). Plugin [vagrant-proxyconf](https://github.com/tmatilai/vagrant-proxyconf) is used to propagate proxy settings to all machines.
-
+You can disable automated plugin download if you comment out line `plugins` close to the start of the `Vagrantfile`. This will disable some features, most notably Windows provisioning for dominator may fail because Virtualbox feature "shared folders" requires synchronization between Virtualbox version and its Guest tools. This process is otherwise automated using [vagrant-vbguest](https://github.com/dotless-de/vagrant-vbguest)
 Ansible
 -------
 
@@ -110,7 +109,7 @@ Role used to setup users and basic packages. Customize users and packages, defau
   - `users`  
     Array of users with groups to be created on redserver. 
 - **docker**  
-Role used to install and setup docker and its shell aliases. No configurable options.
+Role used to install and setup docker and its shell aliases.
 - **docker_mysql**  
 Role used to install mysql container and init.d service. In its `vars\main.yml` customize container name and version. If you change container name it should conform to certain linking scheme (see [sameersbn/docker-redmine](https://github.com/sameersbn/docker-redmine)). The role exposes command `crete-db <name> <user> <pwd>` that other roles can use.
 - **docker_redmine**  
