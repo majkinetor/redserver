@@ -1,7 +1,7 @@
 Introduction
 ============
 
-This is an automated system for the installation of the [Redmine](http://www.redmine.org) project management server in arbitrary environment. [Vagrant](https://www.vagrantup.com/) is used to setup development environment.  [Aensible](http://www.ansible.com) is used for provisioning of software components on empty operating system in all environments.
+This is an automated system for the installation of the [Redmine](http://www.redmine.org) project management server in arbitrary environment. [Vagrant](https://www.vagrantup.com/) is used to setup development environment.  [Ansible](http://www.ansible.com) is used for provisioning of software components on empty operating system in all environments.
 
 Quick start
 ===========
