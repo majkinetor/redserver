@@ -89,11 +89,11 @@ Configuration
 Vagrant
 -------
 
-- `PUBLIC`  
-Set it to true to create `public_network` with IP issued by a DHCP or false to create host only network. The default is `false` - private network will be created with the hard coded IP addresses 192.168.0.10 && 11 for dominator and redserver. Vagrant plugin `vagrant-hostsupdater` adds this IP to hosts files so that you can access server using names defined in Vagrantfile (this works only for private network).
-- PROXY variables  
+- **Constant PUBLIC**  
+In `Vagrantfile`, set it to true to create `public_network` with IP issued by a DHCP or false to create host only network. The default is `false` - private network will be created with the hard coded IP addresses 193.168.0.10 && 11 for dominator and redserver. Vagrant plugin [vagrant-hostsupdater](https://github.com/cogitatio/vagrant-hostsupdater) adds this IP to hosts files so that you can access server using names defined in Vagrantfile (this works only for private network).
+- **PROXY variables**  
 Plugin `vagrant-proxyconf` propagates local proxy config which it gets from standard linux environment variables. In Windows, define those manually. 
-- Vagrant plugins  
+- **Vagrant plugins**  
 You can disable automated plugin download if you comment out line `plugins` close to the start of the `Vagrantfile`. This will disable some features, most notably Windows provisioning for dominator may fail because Virtualbox feature "shared folders" requires synchronization between Virtualbox version and its Guest tools. This process is otherwise automated using [vagrant-vbguest](https://github.com/dotless-de/vagrant-vbguest). Plugin [vagrant-proxyconf](https://github.com/tmatilai/vagrant-proxyconf) is used to propagate proxy settings to all machines.
 
 Ansible
@@ -104,15 +104,15 @@ There are 4 ansible roles that you can somewhat customize.
 - **base**  
 Role used to setup users and basic packages. Customize users and packages, default values are in file `default\main.yml`. You can override them in `site.yml` file `vars` section. Of interest are:  
   - `latest_kernel`  
-    Set to false by default which can be used to install latest Centos6 mainline kernel from ELRepo because docker may work better with it.  
+    False by default, it can be used to install latest CentOS 6 mainline kernel from ELRepo because docker may work better with it.  
   - `packages`  
-    Array containing list of base packages to install on redserver  
+    Array containing list of base packages to install on redserver.  
   - `users`  
-    Array of users to be created and list of groups to add those users to.
+    Array of users with groups to be created on redserver. 
 - **docker**  
-Role used to install and setup docker and its shell aliases.
+Role used to install and setup docker and its shell aliases. No configurable options.
 - **docker_mysql**  
-Role used to install mysql container and init.d service. In its `vars\main.yml` customize container name and version. *NOTE*: If you change container name it should conform to certain linking scheme. See [sameersbn/docker-redmine](https://github.com/sameersbn/docker-redmine). The role exposes command `crete-db <name> <user> <pwd>` that other roles can use.
+Role used to install mysql container and init.d service. In its `vars\main.yml` customize container name and version. If you change container name it should conform to certain linking scheme (see [sameersbn/docker-redmine](https://github.com/sameersbn/docker-redmine)). The role exposes command `crete-db <name> <user> <pwd>` that other roles can use.
 - **docker_redmine**  
 Role used to install redmine container and service. In its `vars\main.yml` customize SMTP & database settings and container name and version. In `files` folder you can customize redmine plugins and languages (see bellow). 
 
