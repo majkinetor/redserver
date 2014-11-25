@@ -29,12 +29,15 @@ Installation Details
 
 Setup requires Internet connection for all involved machines as various components pull their packages (docker, bundler, yum ...). If you have proxy in the environment make sure that [proxy environment variables](http://www.gnu.org/software/wget/manual/html_node/Proxies.html) are set in the console. This is usually already set in Linux like systems, but on Windows you will need to do this manually. 
 
+Password is used for authentication. You can specify it in the ansible inventory files (`hosts_vagrant` and `hosts_prod`) or specify it using `-k (--ask-password`) parameter.
+
 Prerequisites for testing
 --------------------------
 
 - Any x64 operating system
 - VirtualBox 3.18+
 - Vagrant 1.6+
+- If you have proxy, environment variables should be already defined. 
 
 Prerequisites for production server
 -----------------------------------
@@ -42,6 +45,7 @@ Prerequisites for production server
 - Centos 6.6 minimal.
 - `sshd` with `root` password access enabled for ansible provisioning.
 - If you have proxy, environment variables should be already defined in `/etc/environment`.
+
 
 Provisioning
 ------------
@@ -56,7 +60,7 @@ vagrant ssh dominator -c "cd /ansible && ansible-playbook -i hosts_vagrant site.
 # provison only mysql and redmine docker services
 ansible-playbook -i hosts_vagrant site.yml -t mysql,redmine
 
-# Ask for root password
+# Ask for root password so you don't have to specify it in hosts_prod
 ansible-playbook -i hosts_vagrant site.yml -k
 
 # Install latest kernel for docker
@@ -90,7 +94,7 @@ Set it to true to create `public_network` with IP issued by a DHCP or false to c
 - PROXY variables  
 Plugin `vagrant-proxyconf` propagates local proxy config which it gets from standard linux environment variables. In Windows, define those manually. 
 - Vagrant plugins  
-You can disable automated plugin download if you comment out line `plugins` close to the start of the `Vagrantfile`. This will disable some features, most notably Windows provisioning for dominator can fail because Virtualbox feature "shared folders" requires synchronization between Virtualbox version and its Guest tools. This process is automated via [vagrant-vbguest](https://github.com/dotless-de/vagrant-vbguest). Plugin [vagrant-proxyconf](https://github.com/tmatilai/vagrant-proxyconf) is used to propagate proxy settings to all machines. 
+You can disable automated plugin download if you comment out line `plugins` close to the start of the `Vagrantfile`. This will disable some features, most notably Windows provisioning for dominator may fail because Virtualbox feature "shared folders" requires synchronization between Virtualbox version and its Guest tools. This process is otherwise automated using [vagrant-vbguest](https://github.com/dotless-de/vagrant-vbguest). Plugin [vagrant-proxyconf](https://github.com/tmatilai/vagrant-proxyconf) is used to propagate proxy settings to all machines.
 
 Ansible
 -------
@@ -99,15 +103,18 @@ There are 4 ansible roles that you can somewhat customize.
 
 - **base**  
 Role used to setup users and basic packages. Customize users and packages, default values are in file `default\main.yml`. You can override them in `site.yml` file `vars` section. Of interest are:  
-  - `latest_kernel` - set to false by default which can be used to install latest Centos6 mainline kernel from ELRepo because docker may work better with it.  
-  - `packages` - array containing list of base packages to install on redserver  
-  - `users` - array of users to be created and list of groups to add those users to.
+  - `latest_kernel`  
+    Set to false by default which can be used to install latest Centos6 mainline kernel from ELRepo because docker may work better with it.  
+  - `packages`  
+    Array containing list of base packages to install on redserver  
+  - `users`  
+    Array of users to be created and list of groups to add those users to.
 - **docker**  
 Role used to install and setup docker and its shell aliases.
 - **docker_mysql**  
-Role used to install mysql container and init.d service. In its `vars\main.yml` customize container name and version. *NOTE*: If you change container name it should conform to certain linking scheme. See [sameersbn/docker-redmine](https://github.com/sameersbn/docker-redmine).
+Role used to install mysql container and init.d service. In its `vars\main.yml` customize container name and version. *NOTE*: If you change container name it should conform to certain linking scheme. See [sameersbn/docker-redmine](https://github.com/sameersbn/docker-redmine). The role exposes command `crete-db <name> <user> <pwd>` that other roles can use.
 - **docker_redmine**  
-Role used to install redmine container and service. In its `vars\main.yml` customize SMTP & database settings and container name and version. In `files` folder you can customize redmine plugins (see bellow). 
+Role used to install redmine container and service. In its `vars\main.yml` customize SMTP & database settings and container name and version. In `files` folder you can customize redmine plugins and languages (see bellow). 
 
 Keep in mind that provisioning take extended time to finish. On first start redmine will take longer to start as it must install plugins. To make sure redserver is started check out logs:
 
@@ -125,6 +132,8 @@ Script `roles\docker_redmine\files\data\plugins\redmine-plugins-install.sh` is u
 
 To customize plugins either edit the `redmine-plugins-install.sh` script, or, if plugins are already obtained, delete undesired plugin folders. If this is done after the redserver is already provisioned you must also delete redmine database or use script `redmine-plugin-rm <PLUGIN_NAME>`(script implements uninstallation as described [here](https://github.com/sameersbn/docker-redmine#uninstalling-plugins)). Just deleting plugin directory will not remove plugin database enteries which may or may not prevent redmine from working depending on plugin.
 
+Directory `files/lang` contains plugin localisations.
+
 Data
 ====
 
@@ -137,6 +146,3 @@ Notes
 
 - Redmine is started by `supervisor` which starts `unicorn` (config: `/home/redmine/redmine/config/unicorn.rb`). Nginx serves static content.
 - Dominator is used as ansible master instead of vagrant ansible provisioning directly on the redserver to be able to mimic production settings better and to avoid installing packages required by ansible master only.
-- Ansible will require password when using rsync to copy redmine-data. This seems to be ansible bug (see http://goo.gl/IEkyGg). Since this happens at the very end of provisioning which can take a long time, ansible will fail if password is not entered soon enough. If ansible failed on this task just repeat the last role again by adding the 'redmine' tag as an provision argument and use 'vagrant' as password.
-
-    vagrant ssh dominator -c "cd /ansible && ansible-playbook -i hosts_vagrant site.yml -t redmine"

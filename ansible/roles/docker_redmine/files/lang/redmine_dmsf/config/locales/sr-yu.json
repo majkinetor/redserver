@@ -1,0 +1,17 @@
+{
+	"sProcessing":   "Procesiram...",
+	"sLengthMenu":   "Prikaži stavke za _MENU_",
+	"sZeroRecords":  "Nema rezultata",
+	"sInfo":         "Prikazano _START_ do _END_ od _TOTAL_ stavki",
+	"sInfoEmpty":    "Prikazano 0 stavki",
+	"sInfoFiltered": "(filtrirano od _MAX_ stavki u totalu)",
+	"sInfoPostFix":  "",
+	"sSearch":       "Filter:",
+	"sUrl":          "",
+	"oPaginate": {
+		"sFirst":    "Prvi",
+		"sPrevious": "Prethodni",
+		"sNext":     "Sledeci",
+		"sLast":     "Poslednji"
+	}
+}

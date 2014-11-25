@@ -26,8 +26,12 @@
     when: not plugins_init.stat.exists
     tags: redmine-data
 
+  - name: Copy localizations
+    local_action: command /bin/bash -c 'cd "{{playbook_dir}}/roles/docker_redmine/files/lang" && . copy2data.sh'
+    tags: redmine-data
+
   - name: Copy redmine data
-    synchronize: src=data dest=/opt/redmine rsync_path=rsync
+    local_action: command sshpass -p {{ansible_ssh_pass}} rsync "{{playbook_dir}}/roles/docker_redmine/files/data/" "root@{{ansible_ssh_host}}:/opt/redmine"
     tags: redmine-data
 
   - name: Set redmine data permissions
