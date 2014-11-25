@@ -30,6 +30,10 @@
     local_action: command /bin/bash -c 'cd "{{playbook_dir}}/roles/docker_redmine/files/lang" && . copy2data.sh'
     tags: redmine-data
 
+  - name: Ensure data dir
+    file: path=/opt/redmine/data state=directory
+    tags: redmine-data
+
   - name: Copy redmine data
     local_action: command sshpass -p {{ansible_ssh_pass}} rsync -r "{{playbook_dir}}/roles/docker_redmine/files/data/" "root@{{ansible_ssh_host}}:/opt/redmine/data"
     tags: redmine-data
