@@ -1,0 +1,61 @@
+@import url(../../basecamp/stylesheets/application.css);
+
+/* When creating issues, make "targets and objectives" field bigger */
+#issue_custom_field_values_22 { height: 200px; }
+
+/* On login screen, hide Home/Projects/Sign in/Register/Lost password links, search box */
+.action-login .home, 
+.action-login .projects, 
+.action-login #account, 
+.action-login a[href$='/account/lost_password'], 
+.action-login #quick-search { display: none; }
+
+/* Stop flickering? in IE6 */
+* html #content { overflow: visible; }
+
+/* Undo checkbox styles */
+table.list tbody tr td.checkbox { font-size: inherit; padding-left: 0; padding-right: 0; }
+
+/* Change priority colours - 1=High, 3=Medium, 4=Low */
+tr.odd.priority-5, table.list tbody tr.odd.priority-5:hover { color: #559; }
+tr.odd.priority-5 { background: #eaf7ff; }
+tr.even.priority-5, table.list tbody tr.even.priority-5:hover { color: #559; }
+tr.even.priority-5 { background: #f2faff; }
+tr.priority-5 a { color: #559; }
+tr.odd.priority-5 td, tr.even.priority-5 td { border-color: #add7f3; }
+
+tr.odd.priority-4, table.list tbody tr.odd.priority-4:hover { color: #559; }
+tr.odd.priority-4 { background: #eaf7ff; }
+tr.even.priority-4, table.list tbody tr.even.priority-4:hover { color: #559; }
+tr.even.priority-4 { background: #f2faff; }
+tr.priority-4 a { color: #559; }
+tr.odd.priority-4 td, tr.even.priority-4 td { border-color: #add7f3; }
+
+tr.odd.priority-3, table.list tbody tr.odd.priority-3:hover { color: #559; }
+tr.odd.priority-3 { background: #fff; }
+tr.even.priority-3, table.list tbody tr.even.priority-3:hover { color: #559; }
+tr.even.priority-3 { background: #f9f9f9; }
+tr.priority-3 a { color: #559; }
+tr.odd.priority-3 td, tr.even.priority-3 td { border-color: #eee; }
+
+tr.odd.priority-1, table.list tbody tr.odd.priority-1:hover { color: #484848; }
+tr.odd.priority-1 { background: #ffc4c4; }
+tr.even.priority-1, table.list tbody tr.even.priority-1:hover { color: #484848; }
+tr.even.priority-1 { background: #ffd4d4; }
+tr.priority-1 a, tr.priority-1:hover a { color: #900; }
+tr.odd.priority-1 td, tr.even.priority-1 td { border-color: #ffb4b4; }
+
+/* Make text red when overdue */
+tr.odd.overdue td.due_date { background: #ee7777; color: #fff; }
+tr.even.overdue td.due_date { background: #ee8888; color: #fff; }
+table.list tbody tr.odd.overdue:hover td.due_date, 
+table.list tbody tr.even.overdue:hover td.due_date { background: #ffc4c4; color: #484848; }
+table.list tr.overdue td.due_date { border-color: #FFCCCC; }
+table.list tr.overdue td.due_date a:link, table.list tr.overdue td.due_date a:visited { color: #fff; }
+table.list tr.overdue:hover td.due_date a:link, table.list tr.overdue:hover td.due_date a:visited { color: #484848; }
+
+/* Make subject box a sensible size */
+input#issue_subject { font-size: 100%; }
+
+/* Arial is our standard font */
+textarea.wiki-edit { font-family: Arial, Verdana, Serif; font-size: larger; }

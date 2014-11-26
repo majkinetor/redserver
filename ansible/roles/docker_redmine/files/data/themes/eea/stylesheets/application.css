@@ -1,0 +1,77 @@
+/* load the default Redmine stylesheet */
+@import url(../../../stylesheets/application.css);
+
+/* general */
+body {
+ padding: 0px 10px;
+}
+
+/* top-menu */
+#top-menu {
+    background: #fff;
+}
+
+#top-menu a {
+    color: #3E5B76;
+}
+
+/* header */
+#header {
+    background: #A5CED1 url(../images/top_01.png) repeat-y;
+    height: 105px;
+    border-top: 4px solid #6F7072;
+}
+
+#header h1 {
+    padding-left: 40px;
+    margin-top: 25px;
+    display: inline-block;
+}
+
+#quick-search label,
+#quick-search label a {
+    color: #00446A;
+}
+
+#main-menu {
+    background: #00446A;
+    width: 100%;
+    left: 0px;
+}
+
+#main-menu li a {
+    font-weight: normal;
+}
+
+#right-image-container {
+}
+
+/* footer */
+#footer {
+    background: #CEDC32;
+    padding: 15px;
+    color: #999;
+}
+
+/* move search box */
+body #top-menu {
+    height: 25px;
+}
+
+#quick-search {
+    margin-top: -33px;
+    height: 24px;
+    background: transparent;
+}
+
+/* relocate the menu for sign in */
+#account ul {
+    display: block;
+    margin-right: 415px;
+}
+
+#account ul,
+#loggedas,
+#top-menu ul {
+    margin-top: 5px;
+}
