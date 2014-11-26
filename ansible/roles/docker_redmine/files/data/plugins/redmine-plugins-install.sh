@@ -66,7 +66,7 @@ i wiking                           http://projects.andriylesyuk.com/attachments/
 sed -e "/^gem 'rubyzip/ s/^/#/"         -i redmine_dmsf/Gemfile        #redmine uses rubyzip
 sed -e '/^group :xapian/,/^end/ s/^/#/' -i redmine_dmsf/Gemfile        #remove xapian things, they require some local gems
 sed -e '/^gem "spreadsheet"/ s/^/#/'    -i redmine_contacts/Gemfile    #issuify requires higher version
-sed -e '/^group :development/,/^end/ /s/^/#/' -i redmine_private_wiki/Gemfile    #issuify requires higher version
+sed -e '/^group :development/,/^end/ s/^/#/' -i redmine_private_wiki/Gemfile    #issuify requires higher version
 
 
 # Generate init file
