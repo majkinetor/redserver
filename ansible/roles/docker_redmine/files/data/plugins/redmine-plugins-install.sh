@@ -58,7 +58,7 @@ i redmine_stealth                  https://github.com/Undev/redmine_stealth/arch
 i redmine_theme_changer            https://bitbucket.org/haru_iida/redmine_theme_changer/get/tip.zip
 i redmine_tweaks                   https://github.com/alexandermeindl/redmine_tweaks/archive/master.zip
 i redmine_wiki_backlinks           https://github.com/bluezio/redmine_wiki_backlinks/archive/master.zip
-i redmine_wiki_extensions          https://bitbucket.org/skyeagle/redmine_wiki_extensions/get/tip.zip
+i redmine_wiki_extensions          https://bitbucket.org/haru_iida/redmine_wiki_extensions/get/tip.zip
 i redmine_work_time                https://bitbucket.org/tkusukawa/redmine_work_time/get/tip.zip
 i wiking                           http://projects.andriylesyuk.com/attachments/download/564/wiking-1.0.0b.tar.bz2
 
